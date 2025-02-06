@@ -8,3 +8,12 @@ packages:
 scripts:
   analyze:
     exec: dart analyze .
+
+command:
+  version: 
+    branch: main
+    workspaceChangelog: true
+    message: |
+      chore: cut package releases 🎉
+
+      {new_package_versions}
