@@ -1,0 +1,10 @@
+name: my_project
+
+packages:
+  - feature/**
+  - packages/**
+  - shared/**
+  
+scripts:
+  analyze:
+    exec: dart analyze .
