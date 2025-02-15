@@ -4,16 +4,21 @@ packages:
   - feature/**
   - packages/**
   - shared/**
-  
+
 scripts:
-  analyze:
-    exec: dart analyze .
+  analyze: flutter analyze
 
-command:
-  version: 
-    branch: main
-    workspaceChangelog: true
-    message: |
-      chore: cut package releases 🎉
+  test: flutter test
 
-      {new_package_versions}
+  ci:
+    run: |
+      melos run test
+      melos run analyze
+
+  build:web:
+    run: |
+      melos bs
+      cd apps/app
+      flutter build web --release
+
+  format: dart format .

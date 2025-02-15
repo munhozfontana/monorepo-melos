@@ -230,10 +230,10 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2025-02-04T01:29:52.423931Z",
+  "generated": "2025-02-15T14:53:37.401103Z",
   "generator": "pub",
-  "generatorVersion": "3.6.1",
+  "generatorVersion": "3.7.0",
   "flutterRoot": "file:///home/munhoz/snap/flutter/common/flutter",
-  "flutterVersion": "3.27.3",
+  "flutterVersion": "3.29.0",
   "pubCache": "file:///home/munhoz/.pub-cache"
 }
