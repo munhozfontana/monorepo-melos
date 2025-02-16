@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: http-hello
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: http-hello
+  template:
+    metadata:
+      labels:
+        app: http-hello
+    spec:
+      containers:
+        - name: http-hello
+          image: lufemunhoz/meu-flutter-app:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-service
+spec:
+  type: NodePort
+  selector:
+    app: http-hello
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30000

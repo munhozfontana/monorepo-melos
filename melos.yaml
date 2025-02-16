@@ -18,7 +18,6 @@ scripts:
   build:web:
     run: |
       melos bs
-      cd apps/app
-      flutter build web --release
+      cd apps/app && flutter build web --release && cd .. && cd ..
 
   format: dart format .

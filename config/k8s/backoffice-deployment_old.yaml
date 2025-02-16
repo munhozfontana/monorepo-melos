@@ -1,0 +1,85 @@
+# 1️⃣ Criar Namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: backoffice-main
+
+---
+# 2️⃣ Criar Deployment (Rodando o container já configurado com Nginx)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backoffice-front-deployment
+  namespace: backoffice-main
+  labels:
+    app: backoffice-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backoffice-front
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: backoffice-front
+    spec:
+      containers:
+        - name: backoffice-front
+          image: lufemunhoz/meu-flutter-app:latest
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 0.5
+            requests:
+              memory: 100Mi
+              cpu: 0.001
+
+---
+# 3️⃣ Criar Service (Expondo o Deployment via NodePort)
+apiVersion: v1
+kind: Service
+metadata:
+  name: backoffice-front-service
+  namespace: backoffice-main
+spec:
+  selector:
+    app: backoffice-front-deployment
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      name: http
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+      name: https
+  type: NodePort
+
+---
+# 4️⃣ Criar Ingress para expor o serviço externamente
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backoffice-front-ingress
+  namespace: backoffice-main
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: localhost # Host que será utilizado para acessar o serviço
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: backoffice-front-service
+                port:
+                  number: 80
