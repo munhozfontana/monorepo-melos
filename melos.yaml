@@ -1,9 +1,9 @@
 name: my_project
 
 packages:
-  - feature/**
-  - packages/**
-  - shared/**
+  - src/apps/**
+  - src/packages/**
+  - src/shared/**
 
 scripts:
   analyze: flutter analyze

@@ -1,6 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Flutter Run -&gt; 'mfa'" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="filePath" value="$PROJECT_DIR$/shared/mfa/lib/main.dart" />
-    <method v="2" />
-  </configuration>
-</component>

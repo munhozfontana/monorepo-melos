@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: commons_dependencies,home,routing
+dependency_overrides:
+  commons_dependencies:
+    path: ../../packages/commons_dependencies
+  home:
+    path: ../home
+  routing:
+    path: ../../packages/routing

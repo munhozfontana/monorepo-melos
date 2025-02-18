@@ -1,0 +1,8 @@
+# melos_managed_dependency_overrides: login,home,commons_dependencies
+dependency_overrides:
+  login:
+    path: ../../apps/login
+  home:
+    path: ../../apps/home
+  commons_dependencies:
+    path: ../commons_dependencies
